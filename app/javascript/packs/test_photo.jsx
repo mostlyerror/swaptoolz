@@ -2,6 +2,7 @@ import React from 'react'
 import ReactDOM from 'react-dom'
 import Camera from 'react-html5-camera-photo';
 import 'react-html5-camera-photo/build/css/index.css';
+// https://github.com/mabelanger/react-html5-camera-photo
 
 function App (props) {
   function handleTakePhoto (dataUri) {

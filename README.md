@@ -1,24 +1,8 @@
-# README
+SWAPtoolz
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Devise: user authentication, registration, etc.
+https://github.com/heartcombo/devise
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+React HTML5 Camera Photo
+Component for taking photos, included in intake forms
+https://github.com/mabelanger/react-html5-camera-photo
