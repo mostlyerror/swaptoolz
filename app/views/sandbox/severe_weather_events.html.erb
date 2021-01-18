@@ -1,0 +1,13 @@
+<h2>Severe Weather Events</h2>
+
+<p>
+    <%= link_to 'sandbox', sandbox_path %>
+</p>
+
+<% if @severe_weather_events.any? %>
+    <% @severe_weather_events.each do |event| %>
+        <pre><%= event.attributes.to_yaml %></pre>
+    <% end %>
+<% else %>
+    No events found.
+<% end %>

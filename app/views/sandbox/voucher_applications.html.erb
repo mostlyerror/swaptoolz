@@ -1,0 +1,13 @@
+<h2>Voucher Applications</h2>
+
+<p>
+    <%= link_to 'sandbox', sandbox_path %>
+</p>
+
+<% if @voucher_applications.any? %>
+    <% @voucher_applications.each do |application| %>
+        <pre><%= application.attributes.to_yaml %></pre>
+    <% end %>
+<% else %>
+    No applications found.
+<% end %>

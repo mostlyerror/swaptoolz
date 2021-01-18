@@ -7,4 +7,13 @@ class SandboxController < ApplicationController
   def motels
     @motels = Motel.all
   end
+
+  def severe_weather_events
+    @severe_weather_events = SevereWeatherEvent.all
+  end
+
+  def voucher_applications
+    @voucher_applications = VoucherApplication.all
+  end
+
 end

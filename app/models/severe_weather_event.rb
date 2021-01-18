@@ -1,0 +1,2 @@
+class SevereWeatherEvent < ApplicationRecord
+end

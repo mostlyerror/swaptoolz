@@ -1,5 +1,13 @@
 <h2>Motels</h2>
 
-<% @motels.each do |motel| %>
-    <pre><%= motel.attributes.to_yaml %></pre>
+<p>
+    <%= link_to 'sandbox', sandbox_path %>
+</p>
+
+<% if @motels.any? %>
+    <% @motels.each do |motel| %>
+        <pre><%= motel.attributes.to_yaml %></pre>
+    <% end %>
+<% else %>
+    No motels found.
 <% end %>
