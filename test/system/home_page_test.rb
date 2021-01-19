@@ -1,17 +1,16 @@
 require "application_system_test_case"
 
 class HomePageTest < ApplicationSystemTestCase
-  before do
+  include Devise::Test::IntegrationHelpers
+  test "visiting the homepage" do
     user = User.create!(
         email: 'bpoon@codeforamerica.org',
         password: 'passw0rd',
         password_confirmation: 'passw0rd'
     )
     sign_in user
-  end
-
-  test "visiting the homepage" do
     visit root_url
+
     assert_text "SWAP Status: Inactive"
 
     SevereWeatherEvent.create(

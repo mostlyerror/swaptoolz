@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class SevereWeatherEventTest < ActiveSupport::TestCase
-  test "#active scope returns current SWE if there one exists" do
+  test "#active scope returns current SWE if one exists" do
     refute SevereWeatherEvent.active
     swe = SevereWeatherEvent.create(start: Date.today + 30, end: Date.today + 31)
     refute SevereWeatherEvent.active
@@ -11,7 +11,7 @@ class SevereWeatherEventTest < ActiveSupport::TestCase
     assert SevereWeatherEvent.active == we
   end
 
-  test "there can be only one (at any given time)" do
+  test "there can be only one (saved for a given block of time)" do
     swe = SevereWeatherEvent.create(start: Date.today, end: Date.today + 1)
     assert swe.persisted?
 
