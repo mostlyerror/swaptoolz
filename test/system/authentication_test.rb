@@ -11,8 +11,8 @@ class AuthenticationTest < ApplicationSystemTestCase
 
         user = User.create!(
             email: 'bpoon@codeforamerica.org',
-            password: 'skywalker1',
-            password_confirmation: 'skywalker1'
+            password: 'passw0rd',
+            password_confirmation: 'passw0rd'
         )
         sign_in user
 
