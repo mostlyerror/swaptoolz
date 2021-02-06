@@ -5,6 +5,14 @@ class SevereWeatherEvent < ApplicationRecord
   validate :overlapping_events
   validate :order_of_dates
 
+  def rooms
+    availabilities = Availability.where(severe_weather_event: self)
+    return 0 if availabilities.empty?
+    availabilities
+      .pluck(:rooms)
+      .reduce(&:+)
+  end
+
   def self.current
     past = SevereWeatherEvent.where("end_date >= ?", Date.today)
     return past.first if past.present?

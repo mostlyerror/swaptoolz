@@ -10,10 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_18_194351) do
+ActiveRecord::Schema.define(version: 2021_02_06_095138) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "availabilities", force: :cascade do |t|
+    t.bigint "motel_id"
+    t.bigint "severe_weather_event_id"
+    t.integer "rooms"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["motel_id", "severe_weather_event_id"], name: "index_availabilities_on_motel_id_and_severe_weather_event_id", unique: true
+    t.index ["motel_id"], name: "index_availabilities_on_motel_id"
+    t.index ["severe_weather_event_id"], name: "index_availabilities_on_severe_weather_event_id"
+  end
 
   create_table "motels", force: :cascade do |t|
     t.string "name", null: false
@@ -55,4 +66,6 @@ ActiveRecord::Schema.define(version: 2021_01_18_194351) do
     t.index ["user_id"], name: "index_voucher_applications_on_user_id"
   end
 
+  add_foreign_key "availabilities", "motels"
+  add_foreign_key "availabilities", "severe_weather_events"
 end

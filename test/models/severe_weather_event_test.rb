@@ -1,6 +1,19 @@
 require 'test_helper'
 
 class SevereWeatherEventTest < ActiveSupport::TestCase
+  test "has available rooms through availabiities" do
+    swe = SevereWeatherEvent.create(start_date: Date.yesterday, end_date: Date.today)
+    assert_equal swe.rooms, 0
+
+    motel = Motel.create(name: 'asdf', address: 'asdf', phone: 'asdf')
+    Availability.create(severe_weather_event: swe, motel: motel, rooms: 10)
+    assert_equal swe.rooms, 10
+
+    motel = Motel.create(name: 'asdf', address: 'asdf', phone: 'asdf')
+    avail = Availability.create(severe_weather_event: swe, motel: motel, rooms: 20)
+    assert_equal swe.rooms, 30
+  end
+
   test "::current returns ongoing event" do
     refute SevereWeatherEvent.current
 
