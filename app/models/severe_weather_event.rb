@@ -5,6 +5,14 @@ class SevereWeatherEvent < ApplicationRecord
   validate :overlapping_events
   validate :order_of_dates
 
+  def self.current
+    past = SevereWeatherEvent.where("end_date >= ?", Date.today)
+    return past.first if past.present?
+
+    future = SevereWeatherEvent.where("start_date >= ?", Date.today)
+    return future.first if future.present?
+  end
+
   def duration
     ((end_date - start_date) + 1).to_i
   end

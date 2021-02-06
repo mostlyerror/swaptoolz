@@ -1,7 +1,6 @@
-<h1>Home#index</h1>
 <div>
   <% if !@swe.nil? %>
-    <p class="swap-active">SWAP has been <span>activated</span>/p>
+    <p class="swap-active">SWAP has been <span>activated</span></p>
     <p class="swap-duration">for <%= @swe.duration %> days</p>
     <p class="swap-period">from <%= @swe.start_date.to_formatted_s(:long) %> to <%= @swe.end_date.to_formatted_s(:long) %></p>
   <% else %>

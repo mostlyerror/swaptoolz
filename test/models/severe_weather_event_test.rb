@@ -1,6 +1,30 @@
 require 'test_helper'
 
 class SevereWeatherEventTest < ActiveSupport::TestCase
+  test "::current returns ongoing event" do
+    refute SevereWeatherEvent.current
+
+    swe = SevereWeatherEvent.create(start_date: Date.yesterday, end_date: Date.today)
+    assert_equal SevereWeatherEvent.current, swe
+    swe.destroy!
+
+    swe = SevereWeatherEvent.create(start_date: Date.yesterday, end_date: Date.tomorrow)
+    assert_equal SevereWeatherEvent.current, swe
+    swe.destroy!
+
+    swe = SevereWeatherEvent.create(start_date: Date.today, end_date: Date.tomorrow)
+    assert_equal SevereWeatherEvent.current, swe
+  end
+
+  test "::current returns future event if none ongoing" do
+    refute SevereWeatherEvent.current
+    swe = SevereWeatherEvent.create(start_date: 3.days.ago, end_date: 2.days.ago)
+    refute SevereWeatherEvent.current
+
+    swe = SevereWeatherEvent.create(start_date: Date.tomorrow, end_date: 3.days.from_now)
+    assert_equal SevereWeatherEvent.current, swe
+  end
+
   test "overlapping events" do
     swe = SevereWeatherEvent.create(start_date: Date.today, end_date: Date.today + 1)
     assert swe.persisted?

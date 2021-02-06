@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
   def index
-    @swe = SevereWeatherEvent.last
+    @swe = SevereWeatherEvent.current
   end
 end
