@@ -3,10 +3,17 @@ require "application_system_test_case"
 class HomePageTest < ApplicationSystemTestCase
   include Devise::Test::IntegrationHelpers
   setup do
+    motel = Motel.create!(
+      name: 'asdf',
+      address: 'asdf',
+      phone: 'asdf'
+    )
+
     user = User.create!(
         email: 'bpoon@codeforamerica.org',
         password: 'passw0rd',
-        password_confirmation: 'passw0rd'
+        password_confirmation: 'passw0rd',
+        motel: motel
     )
     sign_in user
   end
