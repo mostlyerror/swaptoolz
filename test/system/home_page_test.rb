@@ -9,16 +9,16 @@ class HomePageTest < ApplicationSystemTestCase
         password_confirmation: 'passw0rd'
     )
     sign_in user
-    visit root_url
 
-    assert_text "SWAP Status: Inactive"
+    visit root_url
+    assert_text "SevereWeatherEvent does not exist"
 
     SevereWeatherEvent.create(
-      start: Date.today,
-      en: Date.tomorrow,
+      start_date: Date.today,
+      end_date: Date.tomorrow,
     )
 
-    assert_text "SWAP Status: Inactive"
-    assert_selector 'button', /create swap event/i
+    visit root_url
+    assert_text "SevereWeatherEvent exists"
   end
 end

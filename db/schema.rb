@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 2021_01_18_194351) do
   end
 
   create_table "severe_weather_events", force: :cascade do |t|
-    t.date "start", null: false
-    t.date "end"
+    t.date "start_date", null: false
+    t.date "end_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
