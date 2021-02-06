@@ -22,6 +22,6 @@ class HomePageTest < ApplicationSystemTestCase
     assert_text /activated/i
     assert_text Date.today.to_formatted_s(:long)
     assert_text Date.tomorrow.to_formatted_s(:long)
-    assert_text "(#{swe.duration} days)"
+    assert_text "#{swe.duration} days"
   end
 end
