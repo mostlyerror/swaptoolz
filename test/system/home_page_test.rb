@@ -11,14 +11,17 @@ class HomePageTest < ApplicationSystemTestCase
     sign_in user
 
     visit root_url
-    assert_text "SevereWeatherEvent does not exist"
+    assert_text /inactive/i
 
-    SevereWeatherEvent.create(
+    swe = SevereWeatherEvent.create(
       start_date: Date.today,
       end_date: Date.tomorrow,
     )
 
     visit root_url
-    assert_text "SevereWeatherEvent exists"
+    assert_text /activated/i
+    assert_text Date.today.to_formatted_s(:long)
+    assert_text Date.tomorrow.to_formatted_s(:long)
+    assert_text "(#{swe.duration} days)"
   end
 end

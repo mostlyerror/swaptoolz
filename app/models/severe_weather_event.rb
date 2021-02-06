@@ -5,6 +5,10 @@ class SevereWeatherEvent < ApplicationRecord
   validate :overlapping_events
   validate :order_of_dates
 
+  def duration
+    ((end_date - start_date) + 1).to_i
+  end
+
   private 
 
   def overlapping_events

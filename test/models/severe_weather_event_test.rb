@@ -33,4 +33,9 @@ class SevereWeatherEventTest < ActiveSupport::TestCase
     swe.start_date = Date.tomorrow + 1
     assert swe.valid?
   end
+
+  test "#duration" do
+    swe = SevereWeatherEvent.new(start_date: Date.today, end_date: Date.today)
+    assert_equal swe.duration, 1, "expected 1, got: #{swe.duration}"
+  end
 end

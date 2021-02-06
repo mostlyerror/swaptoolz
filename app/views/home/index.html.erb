@@ -3,8 +3,8 @@
 
 <p>
   <% if !@swe.nil? %>
-    SevereWeatherEvent exists.
+    SWAP has been activated. Vouchers will be issued for the period:  <%= @swe.start_date.to_formatted_s(:long) %> to <%= @swe.end_date.to_formatted_s(:long) %> (<%= @swe.duration %> days)
   <% else %>
-    SevereWeatherEvent does not exist.
+    SWAP is currently inactive.
   <% end %>
 </p>
