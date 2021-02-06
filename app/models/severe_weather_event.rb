@@ -1,12 +1,13 @@
 class SevereWeatherEvent < ApplicationRecord
-  has_many :voucher_applications
-
   validates_presence_of :start_date, :end_date
   validate :overlapping_events
   validate :order_of_dates
 
+  has_many :voucher_applications
+  has_many :availabilities
+
+
   def rooms
-    availabilities = Availability.where(severe_weather_event: self)
     return 0 if availabilities.empty?
     availabilities
       .pluck(:rooms)
