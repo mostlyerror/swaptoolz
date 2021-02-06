@@ -1,7 +1,7 @@
 require 'test_helper'
 
 class SevereWeatherEventTest < ActiveSupport::TestCase
-  test "has count of rooms through availabiities" do
+  test "has count of rooms through availabilities" do
     swe = SevereWeatherEvent.create(start_date: Date.yesterday, end_date: Date.today)
     assert_equal swe.rooms, 0
 
