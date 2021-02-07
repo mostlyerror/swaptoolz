@@ -47,7 +47,7 @@ class SevereWeatherEventTest < ActiveSupport::TestCase
     assert_equal SevereWeatherEvent.current, present
 
     future = create(:severe_weather_event, :future) # starts 3 days from now
-    assert_equal SevereWeatherEvent.current, :present
+    assert_equal SevereWeatherEvent.current, present
   end
 
   test "overlapping events" do

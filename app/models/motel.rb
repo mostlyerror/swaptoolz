@@ -10,6 +10,7 @@ class Motel < ApplicationRecord
     end
 
     def participating?(swe)
+      return false if swe.nil?
       Availability.find_by(motel: self, severe_weather_event: swe)&.rooms.to_i > 0
     end
 end
