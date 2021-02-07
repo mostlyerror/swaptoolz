@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+  namespace :admin do
+      resources :users
+      resources :motels
+      resources :severe_weather_events
+
+      root to: "users#index"
+    end
   devise_for :users
   root to: 'home#index'
 

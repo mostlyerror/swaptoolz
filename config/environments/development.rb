@@ -53,6 +53,11 @@ Rails.application.configure do
   # number of complex assets.
   config.assets.debug = true
 
+  # bypass issue with administrate gem
+  # https://stackoverflow.com/questions/35683185/rails-sprocketsrailshelperassetnotprecompiled-in-development/35693689
+  config.assets.check_precompiled_asset = false
+
+
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
