@@ -9,18 +9,7 @@ class AuthenticationTest < ApplicationSystemTestCase
         assert_selector 'label', text: /email/i
         assert_selector 'label', text: /password/i
 
-        motel = Motel.create!(
-          name: 'asdf',
-          address: 'asdf',
-          phone: 'asdf'
-        )
-
-        user = User.create!(
-            email: 'bpoon@codeforamerica.org',
-            password: 'passw0rd',
-            password_confirmation: 'passw0rd',
-            motel: motel
-        )
+        user = create(:user)
         sign_in user
 
         visit sandbox_url

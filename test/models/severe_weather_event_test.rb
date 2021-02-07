@@ -2,14 +2,14 @@ require 'test_helper'
 
 class SevereWeatherEventTest < ActiveSupport::TestCase
   test "has count of rooms through availabilities" do
-    swe = SevereWeatherEvent.create(start_date: Date.yesterday, end_date: Date.today)
+    swe = create(:severe_weather_event)
     assert_equal swe.rooms, 0
 
-    motel = Motel.create(name: 'asdf', address: 'asdf', phone: 'asdf')
+    motel = create(:motel)
     Availability.create(severe_weather_event: swe, motel: motel, rooms: 10)
     assert_equal swe.rooms, 10
 
-    motel = Motel.create(name: 'asdf', address: 'asdf', phone: 'asdf')
+    motel = create(:motel)
     avail = Availability.create(severe_weather_event: swe, motel: motel, rooms: 20)
     assert_equal swe.rooms, 30
   end
@@ -17,15 +17,15 @@ class SevereWeatherEventTest < ActiveSupport::TestCase
   test "::current returns ongoing event" do
     refute SevereWeatherEvent.current
 
-    swe = SevereWeatherEvent.create(start_date: Date.yesterday, end_date: Date.today)
+    swe = create(:severe_weather_event, start_date: Date.yesterday, end_date: Date.today)
     assert_equal SevereWeatherEvent.current, swe
     swe.destroy!
 
-    swe = SevereWeatherEvent.create(start_date: Date.yesterday, end_date: Date.tomorrow)
+    swe = create(:severe_weather_event, start_date: Date.yesterday, end_date: Date.tomorrow)
     assert_equal SevereWeatherEvent.current, swe
     swe.destroy!
 
-    swe = SevereWeatherEvent.create(start_date: Date.today, end_date: Date.tomorrow)
+    swe = create(:severe_weather_event, start_date: Date.today, end_date: Date.tomorrow)
     assert_equal SevereWeatherEvent.current, swe
   end
 
@@ -39,16 +39,15 @@ class SevereWeatherEventTest < ActiveSupport::TestCase
   end
 
   test "overlapping events" do
-    swe = SevereWeatherEvent.create(start_date: Date.today, end_date: Date.today + 1)
+    swe = create(:severe_weather_event)
     assert swe.persisted?
 
-    swe = SevereWeatherEvent.create(start_date: Date.today, end_date: Date.today + 1)
-    refute swe.persisted?, 'Overlapping event should not be saved'
+    swe = build_stubbed(:severe_weather_event)
     refute swe.valid?
   end
 
   test "start/end dates make sense" do
-    swe = SevereWeatherEvent.new(start_date: Date.today, end_date: Date.yesterday)
+    swe = build_stubbed(:severe_weather_event, start_date: Date.today, end_date: Date.yesterday)
     refute swe.valid?, "end_date: #{swe.end_date}  must be later than start_date: #{swe.start_date}"
 
     swe.end_date = Date.tomorrow
@@ -56,7 +55,7 @@ class SevereWeatherEventTest < ActiveSupport::TestCase
   end
 
   test "single-day events are valid" do
-    swe = SevereWeatherEvent.new(start_date: Date.today, end_date: Date.today)
+    swe = build_stubbed(:severe_weather_event, start_date: Date.today, end_date: Date.today)
     assert swe.valid?
   end
 
@@ -64,7 +63,7 @@ class SevereWeatherEventTest < ActiveSupport::TestCase
     swe = SevereWeatherEvent.create(start_date: Date.today, end_date: Date.tomorrow)
     assert swe.persisted?
 
-    swe = SevereWeatherEvent.new(start_date: Date.tomorrow, end_date: Date.tomorrow + 1)
+    swe = build_stubbed(:severe_weather_event, start_date: Date.tomorrow, end_date: Date.tomorrow + 1)
     refute swe.valid?
 
     swe.start_date = Date.tomorrow + 1
@@ -72,7 +71,7 @@ class SevereWeatherEventTest < ActiveSupport::TestCase
   end
 
   test "#duration" do
-    swe = SevereWeatherEvent.new(start_date: Date.today, end_date: Date.today)
+    swe = build_stubbed(:severe_weather_event, start_date: Date.today, end_date: Date.today)
     assert_equal swe.duration, 1, "expected 1, got: #{swe.duration}"
   end
 end

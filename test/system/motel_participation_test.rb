@@ -4,26 +4,10 @@ class MotelParticipationTest < ApplicationSystemTestCase
   include Devise::Test::IntegrationHelpers
   
   setup do
-    motel = Motel.create!(
-      name: 'asdf',
-      address: 'asdf',
-      phone: 'asdf'
-    )
-
-    user = User.create!(
-        email: 'bpoon@codeforamerica.org',
-        password: 'passw0rd',
-        password_confirmation: 'passw0rd',
-        motel: motel
-    )
+    user = create(:user)
     sign_in user
-
-    @swe = SevereWeatherEvent.create(
-      start_date: Date.tomorrow,
-      end_date: Date.tomorrow + 1.day,
-    )
+    create(:severe_weather_event, start_date: Date.tomorrow, end_date: Date.tomorrow + 1.day)
   end
-
 
    test "motel opts out of swap period participation" do
     visit root_url

@@ -2,8 +2,8 @@ require 'test_helper'
 
 class AvailabilityTest < ActiveSupport::TestCase
   test "motel has single availability record per swap event" do
-    motel = Motel.create(name: 'asdf', address: 'asdf', phone: 'sdasdf')
-    swe = SevereWeatherEvent.create(start_date: Date.yesterday, end_date: Date.today)
+    motel = create(:motel)
+    swe = create(:severe_weather_event)
     assert_equal 0, swe.rooms
 
     avail = Availability.create(severe_weather_event: swe, motel: motel, rooms: 1)

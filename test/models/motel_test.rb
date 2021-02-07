@@ -2,8 +2,8 @@ require 'test_helper'
 
 class MotelTest < ActiveSupport::TestCase
   setup do
-    @motel = Motel.create!(name: 'asdf', address: 'asdf', phone: 'asdf')
-    @swe = SevereWeatherEvent.create(start_date: Date.today, end_date: Date.tomorrow)
+    @motel = create(:motel)
+    @swe = create(:severe_weather_event)
   end
 
   test "#participation_indicated?" do

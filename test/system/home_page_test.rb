@@ -2,19 +2,9 @@ require "application_system_test_case"
 
 class HomePageTest < ApplicationSystemTestCase
   include Devise::Test::IntegrationHelpers
-  setup do
-    motel = Motel.create!(
-      name: 'asdf',
-      address: 'asdf',
-      phone: 'asdf'
-    )
 
-    user = User.create!(
-        email: 'bpoon@codeforamerica.org',
-        password: 'passw0rd',
-        password_confirmation: 'passw0rd',
-        motel: motel
-    )
+  setup do
+    user = create(:user)
     sign_in user
   end
 
@@ -22,10 +12,7 @@ class HomePageTest < ApplicationSystemTestCase
     visit root_url
     assert_text /inactive/i
 
-    swe = SevereWeatherEvent.create(
-      start_date: Date.today,
-      end_date: Date.tomorrow,
-    )
+    swe = create(:severe_weather_event)
 
     visit root_url
     assert_text /activated/i
@@ -40,7 +27,7 @@ class HomePageTest < ApplicationSystemTestCase
 
     start_date = 2.days.from_now.to_date
     end_date = 4.days.from_now.to_date
-    swe = SevereWeatherEvent.create(start_date: start_date, end_date: end_date)
+    swe = create(:severe_weather_event, start_date: start_date, end_date: end_date)
 
     visit root_url
     assert_text /activated/i
@@ -53,10 +40,7 @@ class HomePageTest < ApplicationSystemTestCase
     visit root_url
     assert_text /inactive/i
 
-    swe = SevereWeatherEvent.create(
-      start_date: 3.days.ago,
-      end_date: 2.days.ago
-    )
+    swe = create(:severe_weather_event, start_date: 3.days.ago, end_date: 2.days.ago)
 
     visit root_url
     assert_text /inactive/i
