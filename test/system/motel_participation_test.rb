@@ -6,18 +6,22 @@ class MotelParticipationTest < ApplicationSystemTestCase
   setup do
     user = create(:user)
     sign_in user
-    create(:severe_weather_event, start_date: Date.tomorrow, end_date: Date.tomorrow + 1.day)
   end
 
-   test "motel opts out of swap period participation" do
+  test "participation form shows if future swap period" do
+    skip('not implemented')
     visit root_url
-    assert_text /activated/i
-    assert_text /participate?/
-   end
+    refute_text /participate?/i
 
-   test "motel opts in to swap period participation" do
-    visit root_url
-    assert_text /activated/i
-    assert_text /participate?/
-   end
+    create(:severe_weather_event, :future)
+    assert_text /participate?/i
+  end
+
+  test "motel opts out of swap period participation" do
+    skip('not implemented')
+  end
+
+  test "motel opts in to swap period participation" do
+    skip('not implemented')
+  end
 end
