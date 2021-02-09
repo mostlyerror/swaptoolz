@@ -55,6 +55,7 @@ Rails.application.configure do
 
   # bypass issue with administrate gem
   # https://stackoverflow.com/questions/35683185/rails-sprocketsrailshelperassetnotprecompiled-in-development/35693689
+  # wonder if this is causing issues with heroku..
   config.assets.check_precompiled_asset = false
 
 
