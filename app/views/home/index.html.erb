@@ -1,9 +1,17 @@
 <div>
-  <% if !@swe.nil? %>
-    <p class="swap-active">SWAP has been <span>activated</span></p>
-    <p class="swap-duration">for <%= @swe.duration %> days</p>
-    <p class="swap-period">from <%= @swe.start_date.to_formatted_s(:long) %> to <%= @swe.end_date.to_formatted_s(:long) %></p>
-  <% else %>
-    <p class="swap-active">SWAP is currently <span>inactive</span></p>
-  <% end %>
+  <div class="bg-red-500 w-3/4 mx-auto p-4 text-white">
+    Test TailwindCSS
+    <% if !@swe.nil? %>
+      <p class="swap-active">SWAP has been <span>activated</span></p>
+      <p class="swap-duration">for <%= @swe.duration %> days</p>
+      <p class="swap-period">from <%= @swe.start_date.to_formatted_s(:long) %> to <%= @swe.end_date.to_formatted_s(:long) %></p>
+      <% if @participation.nil? %>
+      <% end %>
+      <h3>Is your motel participating in the SWAP period?</h3>
+      <%= button_to "yes" %>
+      <%= button_to "no" %>
+    <% else %>
+      <p class="swap-active">SWAP is currently <span>inactive</span></p>
+    <% end %>
+  </div>
 </div>
