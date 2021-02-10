@@ -5,8 +5,4 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-  has_many :motels,
-    class_name: 'User',
-    through: :roles,
-    source: :users
 end
