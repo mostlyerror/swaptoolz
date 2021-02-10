@@ -1,2 +1,0 @@
-class VoucherApplication < ApplicationRecord
-end
