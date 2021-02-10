@@ -1,10 +1,30 @@
-admin_user = User.create!(
+ben = User.create!(
   email: 'bpoon@codeforamerica.org',
-  password: 'passw0rd',
-  password_confirmation: 'passw0rd',
+  password: 'password',
+  password_confirmation: 'password',
 )
+ben.add_role :admin
 
-admin_user.add_role :admin
+fiona = User.create!(
+  email: 'ftang@codeforamerica.org',
+  password: 'password',
+  password_confirmation: 'password',
+)
+fiona.add_role :admin
+
+brandon = User.create!(
+  email: 'bjohnson@codeforamerica.org',
+  password: 'password',
+  password_confirmation: 'password',
+)
+brandon.add_role :admin
+
+nubia = User.create!(
+  email: 'nubia@almosthome.org',
+  password: 'password',
+  password_confirmation: 'password',
+)
+nubia.add_role :operator
 
 
 quality_inn = Motel.create!(
@@ -15,8 +35,7 @@ quality_inn = Motel.create!(
 
 tanya = User.create!(
   email: 'tanya@qualityinn.com',
-  password: 'passw0rd',
-  password_confirmation: 'passw0rd',
+  password: 'password',
+  password_confirmation: 'password',
 )
-
 tanya.add_role :front_desk, quality_inn
