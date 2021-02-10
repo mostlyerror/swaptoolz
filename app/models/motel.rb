@@ -1,4 +1,6 @@
 class Motel < ApplicationRecord
+  resourcify
+
   validates_presence_of :name, :address, :phone
 
   has_many :availabilities
