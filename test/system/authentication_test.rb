@@ -1,19 +1,19 @@
 require "application_system_test_case"
 
 class AuthenticationTest < ApplicationSystemTestCase
-    include Devise::Test::IntegrationHelpers
+  include Devise::Test::IntegrationHelpers
 
-    test "redirect to login" do
-        visit sandbox_url
-        
-        assert_selector 'label', text: /email/i
-        assert_selector 'label', text: /password/i
+  test "redirect to login" do
+    visit sandbox_url
 
-        user = create(:user)
-        sign_in user
+    assert_selector 'label', text: /email/i
+    assert_selector 'label', text: /password/i
 
-        visit sandbox_url
+    user = create(:user)
+    sign_in user
 
-        assert_selector 'h1', text: /sandbox/i
-    end
+    visit sandbox_url
+
+    assert_selector 'h1', text: /sandbox/i
+  end
 end
