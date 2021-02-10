@@ -60,4 +60,7 @@ gem "devise", "~> 4.7"
 
 gem "administrate", "~> 0.14.0"
 
-gem "rubocop", "~> 1.9"
+
+gem "rolify", "~> 5.3"
+
+gem "rubocop-rails", "~> 2.9"

@@ -1,14 +1,17 @@
 Rails.application.routes.draw do
-  namespace :admin do
-      resources :users
-      resources :motels
-      resources :severe_weather_events
-
-      root to: "users#index"
-    end
   devise_for :users
   root to: 'home#index'
 
+  namespace :admin do
+    resources :users
+    resources :motels
+    resources :severe_weather_events
+    root to: "users#index"
+  end
+
+  # get 'motels' => 'home/motels', as: :motels_home
+
+  # -- sandbox routes ---------
   get 'sandbox' => 'sandbox#index'
   get 'sandbox/motels' => 'sandbox#motels'
   get 'sandbox/severe_weather_events' => 'sandbox#severe_weather_events'
