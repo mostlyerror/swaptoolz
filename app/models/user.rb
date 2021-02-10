@@ -5,4 +5,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  def is_admin?
+    roles_name.include? "admin"
+  end
+
+  def is_motel?
+    roles_name.include? "front_desk"
+  end
 end

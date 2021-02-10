@@ -1,12 +1,20 @@
 require 'test_helper'
 
 class RoleTest < ActiveSupport::TestCase
-  test "user has many motels using roles" do
+  test "motel user has many motels through roles" do
     user = create(:user)
     motel = create(:motel)
-    assert_equal 0, user.motels.size
+    refute user.is_motel?
 
     user.add_role :front_desk, motel
-    assert_equal 1, user.reload.motels.size
+    assert user.is_motel?
+  end
+
+  test "user is_admin?" do
+    user = create(:user)
+    refute user.is_admin?
+
+    user.add_role :admin
+    assert user.is_admin?
   end
 end
