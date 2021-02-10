@@ -6,10 +6,10 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   def is_admin?
-    roles_name.include? "admin"
+    self.roles_name.include? "admin"
   end
 
   def is_motel?
-    roles_name.include? "front_desk"
+    self.roles_name.include? "front_desk"
   end
 end
