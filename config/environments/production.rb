@@ -22,6 +22,10 @@ Rails.application.configure do
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
 
+  # trying to get administrate to work on heroku
+  # https://github.com/thoughtbot/administrate/issues/429#issuecomment-529438817
+  config.assets.precompile += ['*.js', '*.css']
+
   # Compress CSS using a preprocessor.
   # config.assets.css_compressor = :sass
 
